@@ -22,4 +22,4 @@ WORKDIR /app/searchless_chess
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Default command when running the container
-CMD [ "python3" ]
+CMD [ "/bin/bash" ]
