@@ -1,0 +1,31 @@
+name: Build Docker Image and Save Tar
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to DockerHub (Optional, if pushing)
+        run: echo "Skipping DockerHub login" # Replace with login if needed
+
+      - name: Build Docker image
+        run: docker build -t searchless-chess:offline .
+
+      - name: Save Docker image to tar
+        run: docker save -o searchless-chess.tar searchless-chess:offline
+
+      - name: Upload image tarball as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image-tar
+          path: searchless-chess.tar
