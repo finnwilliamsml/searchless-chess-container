@@ -21,5 +21,7 @@ WORKDIR /app/searchless_chess
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
 # Default command when running the container
 CMD [ "/bin/bash" ]
