@@ -23,5 +23,31 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 RUN pip install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
+RUN git clone https://github.com/official-stockfish/Stockfish.git && \
+    cd Stockfish/src && \
+    make -j profile-build ARCH=x86-64-avx2
+
+# Download and install CUDA 12.8.1
+RUN wget https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda-repo-debian12-12-8-local_12.8.1-570.124.06-1_amd64.deb && \
+    dpkg -i cuda-repo-debian12-12-8-local_12.8.1-570.124.06-1_amd64.deb && \
+    cp /var/cuda-repo-debian12-12-8-local/cuda-*-keyring.gpg /usr/share/keyrings/ && \
+    apt-get update && \
+    apt-get -y install cuda-toolkit-12-8
+
+# Download and install cuDNN 9.8.0
+RUN wget https://developer.download.nvidia.com/compute/cudnn/9.8.0/local_installers/cudnn-local-repo-debian12-9.8.0_1.0-1_amd64.deb && \
+    dpkg -i cudnn-local-repo-debian12-9.8.0_1.0-1_amd64.deb && \
+    cp /var/cuda-repo-debian12-9-8-local/cudnn-*-keyring.gpg /usr/share/keyrings/ && \
+    apt-get update && \
+    apt-get -y install cudnn
+
+# Install build tools for Leela Chess
+RUN apt-get update && apt-get install -y \
+    ninja-build \
+    meson \
+    libgtest-dev
+
+
+
 # Default command when running the container
 CMD [ "/bin/bash" ]
