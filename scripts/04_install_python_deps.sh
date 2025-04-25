@@ -1,5 +1,10 @@
 #!/bin/bash
 set -e
-cd /app/searchless_chess/Stockfish/src
-make -j profile-build ARCH=x86-64-avx2
 
+git clone https://github.com/google-deepmind/searchless_chess.git
+cd searchless_chess
+
+pip install --no-cache-dir -r requirements.txt
+pip install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+cd ..
