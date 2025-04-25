@@ -3,7 +3,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copy scripts into the container
-COPY 01_system_dependencies.sh .
+COPY scripts/01_system_dependencies.sh .
 COPY 02_install_cuda.sh .
 COPY 03_install_cudnn.sh .
 COPY 04_install_python_deps.sh .
