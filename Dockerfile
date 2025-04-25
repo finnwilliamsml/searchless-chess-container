@@ -4,13 +4,13 @@ WORKDIR /app
 
 # Copy scripts into the container
 COPY scripts/01_system_dependencies.sh .
-COPY 02_install_cuda.sh .
-COPY 03_install_cudnn.sh .
-COPY 04_install_python_deps.sh .
-COPY 05_build_stockfish.sh .
-COPY 06_download_lc0_weights.sh .
-COPY 07_setup_bayeselo.sh .
-COPY 08_run_data_downloads.sh .
+COPY scripts/02_install_cuda.sh .
+COPY scripts/03_install_cudnn.sh .
+COPY scripts/04_install_python_deps.sh .
+COPY scripts/05_build_stockfish.sh .
+COPY scripts/06_download_lc0_weights.sh .
+COPY scripts/07_setup_bayeselo.sh .
+COPY scripts/08_run_data_downloads.sh .
 
 # Ensure all scripts are executable
 RUN chmod +x *.sh
