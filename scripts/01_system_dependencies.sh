@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-
 apt-get update && apt-get install -y \
     build-essential \
     git \
@@ -8,6 +7,5 @@ apt-get update && apt-get install -y \
     curl \
     ninja-build \
     meson \
-    libgtest-dev \
-&& rm -rf /var/lib/apt/lists/*
-
+    libgtest-dev && \
+rm -rf /var/lib/apt/lists/*
