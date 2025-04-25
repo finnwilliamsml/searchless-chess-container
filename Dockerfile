@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     curl \
+    ninja-build \
+    meson \
+    libgtest-dev
     && rm -rf /var/lib/apt/lists/*
 
 # Clone the repo into the container
@@ -41,12 +44,32 @@ RUN wget https://developer.download.nvidia.com/compute/cudnn/9.8.0/local_install
     apt-get update && \
     apt-get -y install cudnn
 
-# Install build tools for Leela Chess
-RUN apt-get update && apt-get install -y \
-    ninja-build \
-    meson \
-    libgtest-dev
+# Change to the appropriate directory and download the network weights
+WORKDIR /app/lc0/build/release
 
+# Download and decompress the network weights
+RUN wget https://storage.lczero.org/files/768x15x24h-t82-swa-7464000.pb.gz && \
+    gzip -d 768x15x24h-t82-swa-7464000.pb.gz
+
+# Return to the project root
+WORKDIR /app
+
+# Download and extract BayesElo, then build it
+WORKDIR /app
+
+RUN wget https://www.remi-coulom.fr/Bayesian-Elo/bayeselo.tar.bz2 && \
+    tar -xvjf bayeselo.tar.bz2 && \
+    cd BayesElo && \
+    make bayeselo && \
+    cd ..
+
+WORKDIR /app/data
+RUN chmod +x download.sh && ./download.sh
+WORKDIR /app
+
+WORKDIR /app/checkpoints
+RUN chmod +x download.sh && ./download.sh
+WORKDIR /app
 
 
 # Default command when running the container
