@@ -12,8 +12,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     ninja-build \
     meson \
-    libgtest-dev
-    && rm -rf /var/lib/apt/lists/*
+    libgtest-dev \
+ && rm -rf /var/lib/apt/lists/*
+
 
 # Clone the repo into the container
 RUN git clone https://github.com/google-deepmind/searchless_chess.git
