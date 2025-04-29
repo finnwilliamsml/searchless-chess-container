@@ -133,7 +133,5 @@ Unzip the tar, load and run the docker image:
 ```
 unzip docker-image-tar.zip
 sudo docker load -i searchless-chess.tar
-sudo docker run -it searchless-chess:offline
+docker run --gpus all   -v /usr/local/cuda:/usr/local/cuda   -v /usr/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu   -e LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/lib/x86_64-linux-gnu   searchless-chess:offline
 ```
-
-run
