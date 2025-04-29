@@ -33,9 +33,11 @@ $ sudo apt-get -y install cudnn
 ### Download the data via the website (the docker container will point to the data location):
 
 Under the "Downloading the Datasets" section, download all of the 7 linked files:
+
 https://github.com/google-deepmind/searchless_chess?tab=readme-ov-file
 
 Move the files to the train and test folders found in the following location:
+
 \searchless_chess\data\
 
 ## Download the checkpoints using the following commands:
@@ -55,6 +57,7 @@ $ git clone https://github.com/official-stockfish/Stockfish.git
 $ cd Stockfish/src
 
 $ make -j profile-build ARCH=x86-64-avx2
+
 $ cd ../..
 
 ### Download Leela Chess Zero
@@ -96,8 +99,11 @@ $ cd ..
 ### Run the necessary dependencies 
 
 Within this repository, go to the actions tab.
+
 Click the most recent action called "Build Docker Image and Save Tar".
+
 Scroll down and under Artifacts, download the docker-image-tar.
+
 Move the tar to outside of the searchless-chess directory at the same level.
 
 Unzip the tar, load and run the docker image:
