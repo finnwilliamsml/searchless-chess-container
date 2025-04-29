@@ -18,10 +18,10 @@ RUN chmod +x *.sh
 # Run each step and test success afterward
 RUN ./01_system_dependencies.sh
 
-RUN ./02_install_cuda.sh && \
+#RUN ./02_install_cuda.sh && \
 #    command -v nvcc || { echo "CUDA install failed: nvcc not found"; exit 1; }
 
-RUN ./03_install_cudnn.sh && \
+#RUN ./03_install_cudnn.sh && \
 #    ldconfig -p | grep libcudnn || { echo "cuDNN install failed: libcudnn not found"; exit 1; }
 
 RUN ./04_install_python_deps.sh && \
