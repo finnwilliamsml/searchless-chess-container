@@ -120,3 +120,5 @@ unzip docker-image-tar.zip
 sudo docker load -i searchless-chess.tar
 sudo docker run -it searchless-chess:offline
 ```
+
+run
