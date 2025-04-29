@@ -119,6 +119,7 @@ $ sudo apt-get install -y nvidia-container-toolkit
 ```
 
 (The commands were sourced from here: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+
 (See this post for more information: https://stackoverflow.com/questions/25185405/using-gpu-from-a-docker-container)
 
 ### Run the necessary dependencies 
