@@ -31,10 +31,10 @@ sudo apt-get update
 sudo apt-get -y install cudnn
 ```
 
-Test with the following:
+Confirm with the following:
 
 ```
-sudo docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
+grep CUDNN_MAJOR -A 2 /usr/include/cudnn_version.h
 ```
 
 ### Download the data via the website (the docker container will point to the data location):
