@@ -30,6 +30,10 @@ $ sudo apt-get update
 
 $ sudo apt-get -y install cudnn
 
+Test with the following:
+
+$ sudo docker run --rm --gpus all nvidia/cuda:12.0-base nvidia-smi
+
 ### Download the data via the website (the docker container will point to the data location):
 
 Under the "Downloading the Datasets" section, download all of the 7 linked files:
