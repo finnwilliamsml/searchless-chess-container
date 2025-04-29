@@ -2,6 +2,10 @@
 
 The following are the instructions for setting up the searchless-chess project.
 
+### Initial Clone
+
+Begin by cloning the repo: https://github.com/google-deepmind/searchless_chess?tab=readme-ov-file
+
 ### Cuda 
 
 Both Cuda and Cudnn are too large do be downloaded on a standard free docker container, so must be downloaded locally.
