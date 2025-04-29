@@ -9,6 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Pre-clean Docker system
+        run: |
+          docker system prune -af
+          docker builder prune -af
+          docker image prune -af
+          docker container prune -f
+          docker volume prune -f
+    
       - name: Checkout repo
         uses: actions/checkout@v3
 
@@ -29,9 +37,3 @@ jobs:
         with:
           name: docker-image-tar
           path: searchless-chess.tar
-
-      - name: Remove Docker cache & stopped containers
-        run: |
-          docker builder prune -af
-          docker image prune -af
-          docker container prune -f
