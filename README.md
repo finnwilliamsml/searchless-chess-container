@@ -6,17 +6,14 @@ The following are the instructions for setting up the searchless-chess project.
 
 If wget fails, keep trying. Not a proxy issue.
 
+```
 Install cuda toolkit with the following:
-
-$ wget https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda-repo-debian12-12-8-local_12.8.1-570.124.06-1_amd64.deb
-
-$ sudo dpkg -i cuda-repo-debian12-12-8-local_12.8.1-570.124.06-1_amd64.deb
-
-$ sudo cp /var/cuda-repo-debian12-12-8-local/cuda-*-keyring.gpg /usr/share/keyrings/
-
-$ sudo apt-get update
-
-$ sudo apt-get -y install cuda-toolkit-12-8
+wget https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda-repo-debian12-12-8-local_12.8.1-570.124.06-1_amd64.deb
+sudo dpkg -i cuda-repo-debian12-12-8-local_12.8.1-570.124.06-1_amd64.deb
+sudo cp /var/cuda-repo-debian12-12-8-local/cuda-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get update
+sudo apt-get -y install cuda-toolkit-12-8
+```
 
 Install cudnn using the following:
 
