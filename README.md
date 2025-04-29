@@ -143,3 +143,11 @@ $ unzip docker-image-tar.zip
 $ sudo docker load -i searchless-chess.tar
 $ docker run -it --gpus all   -v /usr/local/cuda:/usr/local/cuda     -v /home/finn/searchless_chess:/app/searchless_chess   -v /usr/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu   -e LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/lib/x86_64-linux-gnu   searchless-chess:offline bash
 ```
+
+### Setting up things inside the container
+
+Set the correct paths:
+
+```
+export PYTHONPATH=/app
+```
