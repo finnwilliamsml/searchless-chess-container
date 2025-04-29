@@ -4,6 +4,8 @@ The following are the instructions for setting up the searchless-chess project.
 
 ### Cuda 
 
+Both Cuda and Cudnn are too large do be downloaded on a standard free docker container, so must be downloaded locally.
+
 If wget fails, keep trying. Not a proxy issue.
 
 Install cuda toolkit with the following:
