@@ -1,53 +1,8 @@
 # searchless-chess-container
 
-Before beginning, you must download the following on your local machine:
-- Cuda
-- CudNN
-- Datasets
-- Checkpoints
+The following are the instructions for setting up the searchless-chess project.
 
-## Cuda
-
-
-
-
-Follow the guide to install cuda and conda:
-GPU Passthrough and Conda
-1.	First, ensure you have the Nvidia Drivers Installed for your machine. Download The Official NVIDIA Drivers | NVIDIA
-2.	Open the Start Menu and click Ubuntu 24.04.1 LTS
-3.	Run through the Installation Instructions found here: CUDA Toolkit 12.8 Update 1 Downloads | NVIDIA Developer
-•	wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
-•	sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
-•	wget https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda-repo-wsl-ubuntu-12-8-local_12.8.1-1_amd64.deb
-•	sudo dpkg -i cuda-repo-wsl-ubuntu-12-8-local_12.8.1-1_amd64.deb
-•	sudo cp /var/cuda-repo-wsl-ubuntu-12-8-local/cuda-*-keyring.gpg /usr/share/keyrings/
-•	sudo apt-get update
-•	sudo apt-get -y install cuda-toolkit-12-8
-4.	Run through the Installation Instructions found here: Installing Miniconda - Anaconda
-•	wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-•	bash ~/Miniconda3-latest-Linux-x86_64.sh
-•	Press Return to review Anaconda’s Terms of Service (TOS). Then press and hold Return to scroll.
-•	Enter yes to agree to the TOS.
-•	Press Enter
-•	Enter yes to modify shell configuration
-•	Close the WSL window
-•	Open the Start Menu and click Ubuntu 24.04.1 LTS
-5.	Run the following command:  nano /home/yourusername/miniconda3/.condarc and remove everything from this file. 
-6.	Exit nano using “Ctrl” + “O”, then press the enter key, then “Ctrl” + “X”
-7.	Run the following command: conda config --set channel_priority strict
-8.	Run the following command: 
-conda config --add channels  http://10.15.159.168:8081/repository/conda/ 
-9.	Run the following command:  nano /home/yourusername/.condarc and remove the line which says “defaults” from this file. 
-10.	Exit nano using “Ctrl” + “O”, then press the enter key, then “Ctrl” + “X”
-11.	Close the WSL window
-12.	Open the Start Menu and click Ubuntu 24.04.1 LTS
-13.	Run the following command: conda create -n Pytorchdemo python=3.10
-14.	Run the following command: conda activate pytorchdemo
-15.	Run the following command: conda install pytorch
-16.	Run the following command: python3
-17.	Now Type in the following: 
-•	import torch
-•	torch.cuda.device_count()
+### Cuda 
 
 If wget fails, keep trying. Not a proxy issue.
 
@@ -65,22 +20,65 @@ sudo cp /var/cudnn-local-repo-debian12-9.8.0/cudnn-local-9C3D3A6D-keyring.gpg /u
 sudo apt-get update
 sudo apt-get -y install cudnn
 
-Clone the repo
+### Download the data via the website (the docker container will point to the data location):
 
-### Download the data (the docker container will point to the data location):
-cd data
-./download.sh
-cd ..
+Under the "Downloading the Datasets" section, download all of the 7 linked files:
+https://github.com/google-deepmind/searchless_chess?tab=readme-ov-file
 
-If data download fails, take note of the file it failed to download, open the download.sh file, and copy the download commands; now run these download commands manually. For me, the final for loop failed, so I did the following:
-- Created new script: $ touch download2.sh
-- Copied for loop into this script:
+Move the files to the train and test folders found in the following location:
+\searchless_chess\data\
 
-cd train
-for idx in $(seq -f "%05g" 0 2147)
-do
-  wget https://storage.googleapis.com/searchless_chess/data/train/action_value-$idx-of-02148_data.bag
-done
+## Download the checkpoints using the following commands:
 
-- $ chmod +x download2.sh
-- ./download2.sh
+$ cd checkpoints
+$ ./download.sh
+$ cd ..
+
+### Download and build Stockfish
+
+Outside of the searchless-chess directory at the same level, install and build Stockfish with the following commands:
+
+$ git clone https://github.com/official-stockfish/Stockfish.git
+$ cd Stockfish/src
+$ make -j profile-build ARCH=x86-64-avx2
+$ cd ../..
+
+### Download Leela Chess Zero
+
+Outside of the searchless-chess directory at the same level, install with the following:
+
+$ git clone -b release/0.30 --recurse-submodules https://github.com/LeelaChessZero/lc0.git
+
+All of the necessary CUDA resources required should have been installed earlier. 
+
+Download the Leela model by using the following:
+
+$ mkdir lc0/build
+$ mkdir lc0/build/release
+$ cd lc0/build/release
+$ wget https://storage.lczero.org/files/768x15x24h-t82-swa-7464000.pb.gz
+$ gzip -d 768x15x24h-t82-swa-7464000.pb.gz
+$ cd ../../..
+
+### Install and build BayesElo
+
+Outside of the searchless-chess directory at the same level, install with the following:
+
+$ wget https://www.remi-coulom.fr/Bayesian-Elo/bayeselo.tar.bz2
+$ tar -xvjf bayeselo.tar.bz2
+$ cd BayesElo
+$ make bayeselo
+$ cd ..
+
+### Run the necessary dependencies 
+
+Within this repository, go to the actions tab.
+Click the most recent action called "Build Docker Image and Save Tar".
+Scroll down and under Artifacts, download the docker-image-tar.
+Move the tar to outside of the searchless-chess directory at the same level.
+
+Unzip the tar, load and run the docker image:
+$ unzip docker-image-tar.zip
+$ sudo docker load -i searchless-chess.tar
+$ sudo docker run -it searchless-chess:offline
+
