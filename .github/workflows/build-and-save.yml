@@ -21,12 +21,6 @@ jobs:
       - name: Build Docker image
         run: docker build -t searchless-chess:offline .
 
-      - name: Remove Docker cache & stopped containers
-        run: |
-          docker builder prune -af
-          docker image prune -af
-          docker container prune -f
-
       - name: Save Docker image to tar
         run: docker save -o searchless-chess.tar searchless-chess:offline
 
@@ -35,3 +29,9 @@ jobs:
         with:
           name: docker-image-tar
           path: searchless-chess.tar
+
+      - name: Remove Docker cache & stopped containers
+        run: |
+          docker builder prune -af
+          docker image prune -af
+          docker container prune -f
