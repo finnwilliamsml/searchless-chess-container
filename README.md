@@ -15,6 +15,12 @@ sudo apt-get update
 sudo apt-get -y install cuda-toolkit-12-8
 ```
 
+Confirm with the following:
+
+```
+nvidia-smi
+```
+
 Install cudnn using the following:
 
 ```
