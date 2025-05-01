@@ -146,8 +146,8 @@ $ docker run -it --gpus all   -v /usr/local/cuda:/usr/local/cuda     -v /home/fi
 
 ### Setting up things inside the container
 
-Add this to .bashrc:
+Add the path to .bashrc:
 
 ```
-export PYTHONPATH=/app
+echo 'export PYTHONPATH=/app' >> ~/.bashrc
 ```
