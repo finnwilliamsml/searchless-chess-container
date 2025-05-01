@@ -40,3 +40,5 @@ RUN ./04_install_python_deps.sh
 #     test -f /app/data/*.pgn && test -f /app/checkpoints/*.ckpt || echo "Warning: data/checkpoints may be incomplete"
 
 CMD ["/bin/bash"]
+ENV PYTHONPATH=/app
+
