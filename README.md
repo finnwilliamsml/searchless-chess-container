@@ -12,10 +12,6 @@ Both Cuda and Cudnn are too large do be downloaded on a standard free docker con
 
 If wget fails, keep trying. Not a proxy issue.
 
-404 issues? Get the most up-to-date instructions here: [https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Debian&target_version=12&target_type=deb_local](https://developer.nvidia.com/cuda-downloads)
-
-Linux > x86_64 > Debian > 12 > Local
-
 Install cuda toolkit with the following:
 ```
 $ wget https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda-repo-debian12-12-8-local_12.8.1-570.124.06-1_amd64.deb
