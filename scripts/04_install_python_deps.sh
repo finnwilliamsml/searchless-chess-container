@@ -1,10 +1,9 @@
 #!/bin/bash
 set -e
 
-git clone https://github.com/google-deepmind/searchless_chess.git
-cd searchless_chess
-
 pip install --no-cache-dir -r requirements.txt
+
+pip download jax==0.6.0 jaxlib==0.6.0+cuda12.cudnn89 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 cd ..
 
