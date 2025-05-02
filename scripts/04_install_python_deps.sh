@@ -15,6 +15,5 @@ pip install --no-cache-dir pandas
 pip install --no-cache-dir scipy
 pip install --no-cache-dir typing-extensions
 
-wget https://files.pythonhosted.org/packages/31/25/32c5e2c919da4faaea9ef5088437ab6e01738c49402e4ec8a6c7b49e30ef/jax-0.6.0-py3-none-any.whl
-wget https://storage.googleapis.com/jax-releases/cuda12/jaxlib-0.6.0+cuda12.cudnn89-cp310-cp310-manylinux2014_x86_64.whl
+wget https://storage.googleapis.com/jax-releases/cuda12/jaxlib-0.6.0%2Bcuda12.cudnn89-cp310-cp310-manylinux2014_x86_64.whl
 
