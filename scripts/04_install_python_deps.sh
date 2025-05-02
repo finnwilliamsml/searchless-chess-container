@@ -7,6 +7,8 @@ pip install --no-cache-dir chess
 pip install --no-cache-dir chex
 pip install --no-cache-dir dm-haiku
 pip install --no-cache-dir grain-nightly
+pip install --no-cache-dir jax
+pip install --no-cache-dir jaxtyping
 pip install --no-cache-dir jupyter
 pip install --no-cache-dir numpy
 pip install --no-cache-dir optax
