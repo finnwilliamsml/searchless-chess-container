@@ -16,3 +16,4 @@ pip install --no-cache-dir scipy
 pip install --no-cache-dir typing-extensions
 
 wget https://storage.googleapis.com/jax-releases/cuda12/jaxlib-0.4.9+cuda12.cudnn88-cp310-cp310-manylinux2014_x86_64.whl
+wget https://files.pythonhosted.org/packages/08/fd/9af49f926cbbc686977c41cdee21669288500b5dbf2e8eeb6b50eacfb00e/jax-0.4.9.tar.gz
